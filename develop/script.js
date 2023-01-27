@@ -2,6 +2,7 @@ var APIKey = '414f5aad5297b46db7645b948ad4cafc';
 var inputBox = document.getElementById("city-input");
 var searchBtn = document.getElementById("search-btn");
 var todayCity = document.getElementById("today-city");
+var todayIcon = document.getElementById("today-icon")
 var todayTemp = document.getElementById("today-temp");
 var todayWind = document.getElementById("today-wind");
 var todayHumidity = document.getElementById("today-humidity");
@@ -26,14 +27,20 @@ function getApi() {
                     })
                     .then(function (data) {
                         console.log(data)
-                        todayCity.textContent = data.city.name + " (" + data.list[0].dt_txt + ")";
-                        todayTemp.textContent = "Temperature: " + data.list[0].main.temp + " C"
+                        var currentCity = data.city.name;
+                        var currentDate = (data.list[0].dt_txt).substring(0,10);
+                        var currentTemp = data.list[0].main.temp;
+                        var currentWind = data.list[0].wind.speed;
+                        var currentHumidity = data.list[0].main.humidity;
+
+                        todayCity.textContent = currentCity + " (" + currentDate + ")";
+                        todayTemp.textContent = "Temperature: " + currentTemp + "°C";
+                        todayWind.textContent = "Wind: " + currentWind + "mph";
+                        todayHumidity.textContent = "Humidity: " + currentHumidity + "%";
+                        todayIcon.setAttribute("class", "fa-solid fa-cloud");
+
 
                     })
-            // todayCity.textContent = data.name;
-            // todayTemp.textContent = "Temperature: " + data.main.temp + " C";
-            // todayWind.textContent = "Wind: " + data.wind.speed + "mph";
-            // todayHumidity.textContent = "Humidity: " + data.main.humidity + "%";
         })
 };
 

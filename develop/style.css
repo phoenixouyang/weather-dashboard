@@ -56,6 +56,15 @@ header {
     margin: 5px
 }
 
+.weather-today-ci {
+    display: flex;
+    align-items: center;
+}
+
+#today-icon {
+    margin: 0px 6px;
+}
+
 .five-day-display {
     display: flex;
 
