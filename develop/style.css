@@ -3,6 +3,7 @@
     font-family: 'Playfair Display', serif;
 
 }
+
 .dashboard {
     background-image: url(./v2osk-1Z2niiBPg5A-unsplash.jpg);
     background-repeat: no-repeat;
@@ -12,4 +13,38 @@
     height: 100vh;
     margin: 0px;
     padding: 0px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(108, 122, 137, 0.4)
+}
+
+#header-text {
+    font-size: 40px;
+}
+
+.main {
+    display: flex;
+}
+
+.search {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.weather-display {
+}
+
+.weather-today {
+    border: 2px solid black;
+    margin: 5px
+}
+
+.five-day-forecast {
+    border: 2px solid black;
+    display: flex;
+    margin: 5px;
+
 }
