@@ -8,8 +8,10 @@ var todayWind = document.getElementById("today-wind");
 var todayHumidity = document.getElementById("today-humidity");
 
 function getApi() {
+    todayIcon.className = '';
     city = inputBox.value
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
+
 
     fetch(requestUrl)
         .then (function (response) {
@@ -32,13 +34,13 @@ function getApi() {
                         var currentTemp = data.list[0].main.temp;
                         var currentWind = data.list[0].wind.speed;
                         var currentHumidity = data.list[0].main.humidity;
+                        var currentIcon = data.list[0].weather[0].icon;
 
                         todayCity.textContent = currentCity + " (" + currentDate + ")";
                         todayTemp.textContent = "Temperature: " + currentTemp + "°C";
                         todayWind.textContent = "Wind: " + currentWind + "mph";
                         todayHumidity.textContent = "Humidity: " + currentHumidity + "%";
-                        todayIcon.setAttribute("class", "fa-solid fa-cloud");
-
+                        todayIcon.setAttribute("src","http://openweathermap.org/img/wn/" + currentIcon + "@2x.png");
 
                     })
         })
