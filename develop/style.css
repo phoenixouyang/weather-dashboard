@@ -18,6 +18,7 @@
 header {
     text-align: center;
     padding: 20px;
+    margin: 0px 0px 40px 0px;
     background-color: rgba(108, 122, 137, 0.4)
 }
 
@@ -67,7 +68,7 @@ header {
     height: auto;
 }
 
-.five-day-display {
+#five-day-display {
     display: flex;
 
 }
