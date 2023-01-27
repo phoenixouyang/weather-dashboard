@@ -8,8 +8,35 @@
         <title>Weather Dashboard</title>
     </head>
     <body>
-        
-        
+        <div class="dashboard">
+            <header class="header">
+                <h2 id="header-text">Weather Dashboard</h2>
+            </header>
+            <main class="main">
+                <div class="search">
+                    <div class="search-bar">
+                        <h4>Search for a city:</h4>
+                        <input type="text" id="city-input">
+                        <button type="button" id="search-btn">Search</button>
+                    </div>
+                    <div id="search-display">
+                        <!-- city search results go here -->
+                    </div>
+                </div>
+                <div class="weather-display">
+                    <div class="weather-today"></div>
+                    <div class="5day-forecast">
+                        <div id="dayplus1"></div>
+                        <div id="dayplus2"></div>
+                        <div id="dayplus3"></div>
+                        <div id="dayplus4"></div>
+                        <div id="dayplus5"></div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
         <script src="./develop/script.js"></script>
     </body>
 </html>
