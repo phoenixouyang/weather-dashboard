@@ -1,0 +1,15 @@
+* {
+    color:whitesmoke;
+    font-family: 'Playfair Display', serif;
+
+}
+.dashboard {
+    background-image: url(./v2osk-1Z2niiBPg5A-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
