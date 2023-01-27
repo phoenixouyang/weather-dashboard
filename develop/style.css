@@ -35,6 +35,10 @@ header {
     margin: 5px;
 }
 
+#city-input {
+    color: black;
+}
+
 #search-btn {
     color: #FFFFFF;
     background-color: #444D57;
