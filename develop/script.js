@@ -43,7 +43,7 @@ function getApi() {
                         todayHumidity.textContent = "Humidity: " + currentHumidity + "%";
                         todayIcon.setAttribute("src","http://openweathermap.org/img/wn/" + currentIcon + "@2x.png");
 
-                        for (var i=12; i < data.list.length; i+8) {
+                        for (var i=12; i < data.list.length; i += 8) {
                             var j = (i-12)/8;
                             var loopDate = (data.list[i].dt_txt).substring(0,10);
                             var loopTemp = data.list[i].main.temp;
@@ -56,8 +56,6 @@ function getApi() {
                             fiveDayContainer.children[j].children[2].textContent = "Wind: " + loopWind + "mph";
                             fiveDayContainer.children[j].children[3].textContent = "Humidity: " + loopHumidity + "%"
                         }
-
-
                     })
         })
 };
