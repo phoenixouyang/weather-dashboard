@@ -8,10 +8,16 @@ var todayWind = document.getElementById("today-wind");
 var todayHumidity = document.getElementById("today-humidity");
 var fiveDayContainer = document.getElementById("five-day-display");
 var searchDisplay = document.getElementById("search-display");
+var resetBtn = document.getElementById("reset-btn");
 
 function getWeather () {
-    search();
-    getAPI();
+    if (inputBox.value === "") {
+        alert("Please enter a city");
+        return;
+    } else {
+        search();
+        getAPI();
+    }
 }
 
 function getAPI() {
@@ -118,5 +124,13 @@ function displaySearchHistory() {
     }
 }
 
+function resetHistory() {
+    localStorage.clear();
+    while (searchDisplay.firstChild) {
+        searchDisplay.removeChild(searchDisplay.firstChild);
+    }
+}
+
 displaySearchHistory();
 searchBtn.addEventListener("click", getWeather)
+resetBtn.addEventListener("click", resetHistory)

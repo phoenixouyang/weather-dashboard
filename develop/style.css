@@ -35,9 +35,14 @@ header {
     margin: 5px;
 }
 
+.search-bar {
+    display: block;
+}
+
 #city-input {
     color: black;
-    width: 60%;
+    width: 80%;
+    margin: 5px 0px;
 }
 
 #search-btn {
@@ -46,7 +51,20 @@ header {
     border: 0;
     border-radius: 2px;
     padding: 1px 15px;
+    width: 80%;
+    margin: 5px 0px;
 }
+
+#reset-btn {
+    color: #FFFFFF;
+    background-color: #444D57;
+    border: 0;
+    border-radius: 2px;
+    padding: 1px 15px;
+    width: 80%;
+    margin: 5px 0px;
+}
+
 
 .search-city {
     background-color: rgba(108, 122, 137, 0.4);
