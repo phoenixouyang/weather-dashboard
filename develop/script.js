@@ -25,6 +25,16 @@ function getAPI() {
 
     fetch(requestUrl)
         .then (function (response) {
+            if (response.status === 200) {
+                console.log(response.status)
+            }  else {
+                alert("Please enter a valid city, or check your spelling again.")
+                searchDisplay.removeChild(searchDisplay.firstElementChild);
+                var searchList = JSON.parse(localStorage.getItem("searchList")) || [];
+                searchList.pop();
+                localStorage.setItem("searchList", JSON.stringify(searchList));
+                return;
+            }
             return response.json();
         })
         .then (function (data){
@@ -113,7 +123,6 @@ function searchHistory(event) {
 
 function displaySearchHistory() {
     var searchList = JSON.parse(localStorage.getItem("searchList")) || [];
-    console.log(searchList);
 
     for (var i=0; i < searchList.length; i++) {
         var loadCity = document.createElement("button");
