@@ -33,7 +33,7 @@ function getAPI() {
                 console.log(response.status)
             }  else {
                 alert("Please enter a valid city, or check your spelling again.")
-                searchDisplay.removeChild(searchDisplay.firstElementChild);
+                searchDisplay.removeChild(searchDisplay.lastElementChild);
                 var searchList = JSON.parse(localStorage.getItem("searchList")) || [];
                 searchList.pop();
                 localStorage.setItem("searchList", JSON.stringify(searchList));
