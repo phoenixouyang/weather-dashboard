@@ -1,3 +1,4 @@
+// Declare DOM element variables
 var APIKey = '414f5aad5297b46db7645b948ad4cafc';
 var inputBox = document.getElementById("city-input");
 var searchBtn = document.getElementById("search-btn");
@@ -10,6 +11,7 @@ var fiveDayContainer = document.getElementById("five-day-display");
 var searchDisplay = document.getElementById("search-display");
 var resetBtn = document.getElementById("reset-btn");
 
+//checks for blank city name, if not, runs API call
 function getWeather () {
     if (inputBox.value === "") {
         alert("Please enter a city");
@@ -20,11 +22,13 @@ function getWeather () {
     }
 }
 
+// API call
 function getAPI() {
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
 
     fetch(requestUrl)
         .then (function (response) {
+            // checks if search is successful
             if (response.status === 200) {
                 console.log(response.status)
             }  else {
@@ -37,10 +41,12 @@ function getAPI() {
             }
             return response.json();
         })
+        // saves coordiates based on city name
         .then (function (data){
             var coordLat = data.coord.lat;
             var coordLon = data.coord.lon;
             
+            // applies coordiates to OpenWeather's 5 day API
             var requestURLDays = "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordLat + "&lon=" + coordLon +"&units=metric&cnt=50&appid=" + APIKey;
             
             fetch(requestURLDays)
@@ -49,6 +55,7 @@ function getAPI() {
                     })
                     .then(function (data) {
                         console.log(data)
+                        // displays weather data for current day and time
                         var currentCity = data.city.name;
                         var currentDate = (data.list[0].dt_txt).substring(0,10);
                         var currentTemp = data.list[0].main.temp;
@@ -62,6 +69,7 @@ function getAPI() {
                         todayHumidity.textContent = "Humidity: " + currentHumidity + "%";
                         todayIcon.setAttribute("src","http://openweathermap.org/img/wn/" + currentIcon + "@2x.png");
 
+                        // displays weather data for next 5 days
                         for (var i=7; i < data.list.length; i += 8) {
                             var j = (i-7)/8;
                             var loopDate = (data.list[i].dt_txt).substring(0,10);
@@ -84,6 +92,7 @@ function getAPI() {
     
 };
 
+// creates buttons when successful search is done
 function search () {
     todayIcon.className = '';
     city = inputBox.value;
@@ -97,11 +106,13 @@ function search () {
     saveCity();
 }
 
+// looks up existing local storage, and parses it to an array
 var downloadStorage = function() {
     var searchList = JSON.parse(localStorage.getItem("searchList")) || [];
     return searchList
 }
 
+// sets a maximum of 6 cities in array, and removes the city and button if it goes over
 function saveCity() {
     var searchList = downloadStorage();
     if (searchList.length === 6) {
@@ -115,12 +126,14 @@ function saveCity() {
     }
 }
 
+// runs API for city buttons clicked in search history
 function searchHistory(event) {
     var element = event.target;
     city = element.textContent;
     getAPI();
 }
 
+// loads search history when page is refreshed, and recreates buttons
 function displaySearchHistory() {
     var searchList = JSON.parse(localStorage.getItem("searchList")) || [];
 
@@ -133,6 +146,7 @@ function displaySearchHistory() {
     }
 }
 
+// resets data in local storage, and removes all history buttons
 function resetHistory() {
     localStorage.clear();
     while (searchDisplay.firstChild) {
@@ -140,6 +154,7 @@ function resetHistory() {
     }
 }
 
+// adds event listeners for search and reset buttons
 displaySearchHistory();
 searchBtn.addEventListener("click", getWeather)
 resetBtn.addEventListener("click", resetHistory)
